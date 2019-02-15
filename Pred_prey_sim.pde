@@ -31,10 +31,10 @@ public void windowDraw(PApplet app, GWinData data)
   app.strokeWeight(2);
 
   app.fill(127,0,0);
-  app.rect(50, 500, 50, -sim.predCount/30);
+  app.rect(50, 500, 50, -sim.predCount/10);
   
   app.fill(102,102,255);
-  app.rect(100, 500, 50, -sim.preyCount/30);
+  app.rect(100, 500, 50, -sim.preyCount/10);
   System.out.println(sim.predCount);
 }
 

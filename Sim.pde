@@ -6,9 +6,12 @@ class Sim
   int columns, rows;
   // Predator and prey counts each cycle
   int preyCount, predCount;
+  int generation;
 
   // Board, this 2D array fills every position on the board
   int[][] board;
+  ArrayList<Integer> predCountArr = new ArrayList<Integer>();
+  ArrayList<Integer> preyCountArr = new ArrayList<Integer>();
 
 
   Sim() 
@@ -17,6 +20,7 @@ class Sim
     columns = width/div;
     rows = height/div;
     board = new int[columns][rows];
+    generation = 0;
     init();
   }
 
@@ -86,8 +90,11 @@ class Sim
       }
     }
     this.counter();
+    preyCountArr.add(preyCount);
+    predCountArr.add(predCount);
     //Change board into next in time for the next cycle
     board = next;
+    generation++;
   }
 
   //Display the cells, called by draw() on each cycle

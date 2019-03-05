@@ -48,12 +48,6 @@ public void windowDraw(PApplet app, GWinData data)
   app.rect(100, 500, 50, -sim.preyCount/10);
 }
 
-// reset board when mouse is pressed
-void mousePressed() 
-{
-  sim.init();
-}
-
 void logResults() {
   output.println("pred=[");
   for(int i=0; i<sim.predCountArr.size(); i++)

@@ -21,7 +21,6 @@ void setup()
 
 void draw() 
 {
-
   background(255);
 
   sim.generate();
@@ -32,8 +31,7 @@ void draw()
     logResults();
   }
   
-  System.out.println(sim.generation);
-  
+  System.out.println(sim.generation); 
 }
 
 public void windowDraw(PApplet app, GWinData data) 
@@ -65,7 +63,6 @@ void logResults() {
   output.println("plot(pred,'r');");
   output.println("hold on;");
   output.println("plot(prey,'b');");
-  
   
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file

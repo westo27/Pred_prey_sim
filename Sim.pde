@@ -13,7 +13,6 @@ class Sim
   ArrayList<Integer> predCountArr = new ArrayList<Integer>();
   ArrayList<Integer> preyCountArr = new ArrayList<Integer>();
 
-
   Sim() 
   {
     // Initialize rows, columns and set-up arrays

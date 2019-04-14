@@ -1,7 +1,7 @@
 class Sim 
 {
   // Window divider
-  int div = 8;
+  int div = 12;
   // Column and rows to store x and y coords for board[][]
   int columns, rows;
   // Predator and prey counts each cycle
@@ -68,15 +68,14 @@ class Sim
         if (board[x][y] == 1)
         {
           if (predNeighbors > 0) next[x][y] = 2; //Eaten
-          else if (preyNeighbors >  3) next[x][y] = 0; //Overpopulation
+          //else if (preyNeighbors >  3) next[x][y] = 0; //Overpopulation
           else next[x][y] = board[x][y]; //Stasis
         }
         
         // Rules for Predators
         if (board[x][y] == 2)
         {
-          if (predNeighbors > 3) next[x][y] = 0; //Overpopulation
-          else if (preyNeighbors < 1) next[x][y] = 0; //Starvation
+          if (preyNeighbors < 1) next[x][y] = 0; //Starvation
           else next[x][y] = board[x][y]; //Stasis
         }
         
@@ -117,9 +116,9 @@ class Sim
   {
     int rtn;
     float r = random(0,1);
-    if (r < 0.75) rtn = 1; //Blue 5%
-    else if (r < 0.76) rtn = 2; //Red 1%
-    else rtn = 0; //White 94%
+    if (r < 0.75) rtn = 1; //blue prey 5%
+    else if (r < 0.76) rtn = 2; //red pred 1%
+    else rtn = 0; //white empty 94%
     return rtn;
   }
   

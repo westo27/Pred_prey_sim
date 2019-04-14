@@ -1,7 +1,7 @@
 import g4p_controls.*;
 
 // Tom Weston
-// ver 0.3
+// ver 1.1
 
 GWindow window;
 Sim sim;
@@ -10,7 +10,7 @@ PrintWriter output;
 void setup() 
 {
   size(500, 500);
-  frameRate(10);
+  frameRate(5);
   smooth();
   sim = new Sim();
 

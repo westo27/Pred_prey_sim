@@ -2,6 +2,8 @@ import g4p_controls.*;
 
 // Tom Weston
 // ver 1.1
+=======
+
 
 GWindow window;
 Sim sim;
@@ -21,7 +23,6 @@ void setup()
 
 void draw() 
 {
-
   background(255);
 
   sim.generate();
@@ -32,8 +33,7 @@ void draw()
     logResults();
   }
   
-  System.out.println(sim.generation);
-  
+  System.out.println(sim.generation); 
 }
 
 public void windowDraw(PApplet app, GWinData data) 
@@ -46,12 +46,6 @@ public void windowDraw(PApplet app, GWinData data)
   
   app.fill(102,102,255);
   app.rect(100, 500, 50, -sim.preyCount/10);
-}
-
-// reset board when mouse is pressed
-void mousePressed() 
-{
-  sim.init();
 }
 
 void logResults() {
@@ -71,7 +65,6 @@ void logResults() {
   output.println("plot(pred,'r');");
   output.println("hold on;");
   output.println("plot(prey,'b');");
-  
   
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file

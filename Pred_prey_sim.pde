@@ -10,7 +10,7 @@ PrintWriter output;
 void setup() 
 {
   size(500, 500);
-  frameRate(30);
+  frameRate(10);
   smooth();
   sim = new Sim();
 
@@ -28,7 +28,7 @@ void draw()
   
   if (sim.generation == 100)
   {
-    //logResults();
+    logResults();
   }
   
   System.out.println(sim.generation); 

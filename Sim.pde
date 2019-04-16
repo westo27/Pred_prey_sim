@@ -67,7 +67,6 @@ class Sim
         if (board[x][y] == 1)
         {
           if (predNeighbors > 0) next[x][y] = 0; //Eaten
-          //else if (preyNeighbors >  3) next[x][y] = 0; //Overpopulation
           else next[x][y] = board[x][y]; //Stasis
         }
         
@@ -82,10 +81,9 @@ class Sim
         // Rules for Space
         if (board[x][y] == 0)
         {
-          //if (predNeighbors > 0 || preyNeighbors == 0) next[x][y] = 0; //Remain blank
           if (predNeighbors >= 2 && preyNeighbors >= 1) next[x][y] = 2; //Breed pred
           else if (preyNeighbors >= 2) next[x][y] = 1; //Breed prey
-        
+          else next[x][y] = 0;        
         }
       }
     }
@@ -117,9 +115,9 @@ class Sim
   {
     int rtn;
     float r = random(0,1);
-    if (r < 0.75) rtn = 1; //blue prey 5%
-    else if (r < 0.76) rtn = 2; //red pred 1%
-    else rtn = 0; //white empty 94%
+    if (r < 0.05) rtn = 1; //Blue prey 5%
+    else if (r < 0.08) rtn = 2; //Red pred 3%
+    else rtn = 0; //White empty 94%
     return rtn;
   }
   

@@ -10,13 +10,13 @@ PrintWriter output;
 void setup() 
 {
   size(500, 500);
-  frameRate(10);
+  frameRate(60);
   smooth();
   sim = new Sim();
 
   window =  GWindow.getWindow(this, "My Window", 100, 50, 500, 500, JAVA2D);
   window.addDrawHandler(this, "windowDraw");
-  output = createWriter("pred_prey.m"); 
+  output = createWriter("ver_1_2.m"); 
 }
 
 void draw() 
@@ -26,9 +26,9 @@ void draw()
   sim.generate();
   sim.display();
   
-  if (sim.generation == 100)
+  if (sim.generation == 500)
   {
-    logResults();
+    //logResults();
   }
   
   System.out.println(sim.generation); 

@@ -115,8 +115,8 @@ class Sim
   {
     int rtn;
     float r = random(0,1);
-    if (r < 0.05) rtn = 1; //Blue prey 5%
-    else if (r < 0.08) rtn = 2; //Red pred 3%
+    if (r < 0.05) rtn = 1; //Blue prey5%
+    else if (r < 0.08) rtn = 2; //Red pred3%
     else rtn = 0; //White empty 94%
     return rtn;
   }

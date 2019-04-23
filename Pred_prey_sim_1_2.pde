@@ -1,7 +1,7 @@
 import g4p_controls.*;
 
 // Tom Weston
-// ver 1.3
+// ver 1.2
 
 GWindow window;
 Sim sim;

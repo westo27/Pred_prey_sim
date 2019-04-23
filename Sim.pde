@@ -25,9 +25,9 @@ class Sim
 
   void init() {
     //Loop through board array and call predPreyPicker() on each entity
-    for (int i =1;i < columns-1;i++) 
+    for (int i =0; i < columns; i++) 
     {
-      for (int j =1;j < rows-1;j++) 
+      for (int j =0; j < rows; j++) 
       {
         board[i][j] = predPreyPicker();
       }
@@ -43,9 +43,9 @@ class Sim
     int[][] next = new int[columns][rows];
 
     //Loop through board and count the number of cells within the moore neighborhood
-    for (int x = 1; x < columns-1; x++) 
+    for (int x = 0; x < columns; x++) 
     {
-      for (int y = 1; y < rows-1; y++) 
+      for (int y = 0; y < rows; y++) 
       {
         // Add up all the states in a 3x3 surrounding grid
         int predNeighbors = 0;
@@ -54,8 +54,8 @@ class Sim
         {
           for (int j = -1; j <= 1; j++) 
           {
-            if (board[x+i][y+j] == 1) preyNeighbors++;
-            else if (board[x+i][y+j] == 2) predNeighbors++;
+            if (board[(x+i+columns)%columns][(y+j+rows)%rows] == 1) preyNeighbors++;
+            else if (board[(x+i+columns)%columns][(y+j+rows)%rows] == 2) predNeighbors++;
           }
         }
 
@@ -69,7 +69,7 @@ class Sim
           if (predNeighbors > 0) next[x][y] = 0; //Eaten
           else next[x][y] = board[x][y]; //Stasis
         }
-        
+
         // Rules for Predators
         if (board[x][y] == 2)
         {
@@ -77,13 +77,13 @@ class Sim
           else if (preyNeighbors < 1) next[x][y] = 0; //Starvation
           else next[x][y] = board[x][y]; //Stasis
         }
-        
+
         // Rules for Space
         if (board[x][y] == 0)
         {
           if (predNeighbors >= 2 && preyNeighbors >= 1) next[x][y] = 2; //Breed pred
           else if (preyNeighbors >= 2) next[x][y] = 1; //Breed prey
-          else next[x][y] = 0;        
+          else next[x][y] = 0;
         }
       }
     }
@@ -98,37 +98,37 @@ class Sim
   //Display the cells, called by draw() on each cycle
   void display() 
   {
-    for ( int i = 0; i < columns;i++) 
+    for ( int i = 0; i < columns; i++) 
     {
-      for ( int j = 0; j < rows;j++) 
+      for ( int j = 0; j < rows; j++) 
       {
-        if ((board[i][j] == 2)) fill(127,0,0); //Pred
-        else if ((board[i][j] == 1)) fill(102,102,255); //Prey
+        if ((board[i][j] == 2)) fill(127, 0, 0); //Pred
+        else if ((board[i][j] == 1)) fill(102, 102, 255); //Prey
         else if ((board[i][j] == 0)) fill(255); //Blank 
         stroke(0);
         rect(i*div, j*div, div, div);
       }
     }
   }
-  
+
   int predPreyPicker()
   {
     int rtn;
-    float r = random(0,1);
+    float r = random(0, 1);
     if (r < 0.05) rtn = 1; //Blue prey5%
     else if (r < 0.08) rtn = 2; //Red pred3%
     else rtn = 0; //White empty 94%
     return rtn;
   }
-  
+
   void counter()
   {
-      for (int x = 1; x < columns-1; x++) 
+    for (int x = 1; x < columns-1; x++) 
+    {
+      for (int y = 1; y < rows-1; y++) 
       {
-        for (int y = 1; y < rows-1; y++) 
-        {
-         if (board[x][y] == 1) preyCount++;
-         if (board[x][y] == 2) predCount++;  
+        if (board[x][y] == 1) preyCount++;
+        if (board[x][y] == 2) predCount++;
       }
     }
   }

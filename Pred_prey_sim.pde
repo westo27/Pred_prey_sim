@@ -1,7 +1,7 @@
 import g4p_controls.*;
 
 // Tom Weston
-// ver 1.2
+// ver 1.3
 
 GWindow window;
 Sim sim;
@@ -16,7 +16,7 @@ void setup()
 
   window =  GWindow.getWindow(this, "My Window", 100, 50, 500, 500, JAVA2D);
   window.addDrawHandler(this, "windowDraw");
-  output = createWriter("ver_1_2.m"); 
+  output = createWriter("ver_1_4_003.m"); 
 }
 
 void draw() 
@@ -28,7 +28,7 @@ void draw()
   
   if (sim.generation == 500)
   {
-    //logResults();
+    logResults();
   }
   
   System.out.println(sim.generation); 

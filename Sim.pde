@@ -48,6 +48,7 @@ class Sim
       for (int y = 0; y < rows; y++) 
       {
         // Add up all the states in a 3x3 surrounding grid
+        int spaceNeighbors = 0;
         int predNeighbors = 0;
         int preyNeighbors = 0;
         for (int i = -1; i <= 1; i++) 
@@ -56,24 +57,28 @@ class Sim
           {
             if (board[(x+i+columns)%columns][(y+j+rows)%rows] == 1) preyNeighbors++;
             else if (board[(x+i+columns)%columns][(y+j+rows)%rows] == 2) predNeighbors++;
+            else spaceNeighbors++;
           }
         }
 
         //Subtract the cells own state from the neighbor count
-        if (board[x][y] == 1) preyNeighbors--;
+        if (board[x][y] == 0) spaceNeighbors--;
+        else if (board[x][y] == 1) preyNeighbors--;
         else if (board[x][y] == 2) predNeighbors--;
 
         // Rules for Prey
         if (board[x][y] == 1)
         {
-          if (predNeighbors > 0) next[x][y] = 0; //Eaten
+          if (predNeighbors > 0) next[x][y] = eatEscapePicker(); //Eaten
+          //else if (spaceNeighbors > 0) next[x][y] = 0;
           else next[x][y] = board[x][y]; //Stasis
         }
 
         // Rules for Predators
         if (board[x][y] == 2)
         {
-          if (predNeighbors > 2) next[x][y] = 0; //Overpopulation
+          // (predNeighbors > 2) next[x][y] = 0; //Overpopulation
+          if (preyNeighbors >0) next[x][y] = 0; //moving
           else if (preyNeighbors < 1) next[x][y] = 0; //Starvation
           else next[x][y] = board[x][y]; //Stasis
         }
@@ -81,7 +86,7 @@ class Sim
         // Rules for Space
         if (board[x][y] == 0)
         {
-          if (predNeighbors >= 2 && preyNeighbors >= 1) next[x][y] = 2; //Breed pred
+          if (predNeighbors >= 2 && preyNeighbors >= 2) next[x][y] = 2; //Breed pred
           else if (preyNeighbors >= 2) next[x][y] = 1; //Breed prey
           else next[x][y] = 0;
         }
@@ -110,6 +115,15 @@ class Sim
       }
     }
   }
+  
+  int eatEscapePicker() 
+  {
+    int rtn;
+    float r = random(0,1);
+    if (r < 0.66) rtn = 1;
+    else rtn = 2;
+    return rtn;
+  }   
 
   int predPreyPicker()
   {

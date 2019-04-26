@@ -86,7 +86,7 @@ class Sim
         // Rules for Space
         if (board[x][y] == 0)
         {
-          if (predNeighbors >= 2 && preyNeighbors >= 2) next[x][y] = 2; //Breed pred
+          if (predNeighbors >= 2 && preyNeighbors >= 1) next[x][y] = 2; //Breed pred
           else if (preyNeighbors >= 2) next[x][y] = 1; //Breed prey
           else next[x][y] = 0;
         }
@@ -123,14 +123,14 @@ class Sim
     if (r < 0.66) rtn = 1;
     else rtn = 2;
     return rtn;
-  }   
-
+  }
+  
   int predPreyPicker()
   {
     int rtn;
     float r = random(0, 1);
     if (r < 0.05) rtn = 1; //Blue prey5%
-    else if (r < 0.08) rtn = 2; //Red pred3%
+    else if (r < 0.06) rtn = 2; //Red pred3%
     else rtn = 0; //White empty 94%
     return rtn;
   }

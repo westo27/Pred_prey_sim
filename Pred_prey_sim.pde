@@ -10,7 +10,7 @@ PrintWriter output;
 void setup() 
 {
   size(500, 500);
-  frameRate(10);
+  frameRate(60);
   smooth();
   sim = new Sim();
 

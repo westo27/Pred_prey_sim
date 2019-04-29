@@ -1,7 +1,7 @@
 class Sim 
 {
   // Window divider
-  int div = 8;
+  int div = 10;
   // Column and rows to store x and y coords for board[][]
   int columns, rows;
   // Predator and prey counts each cycle
@@ -29,7 +29,12 @@ class Sim
     {
       for (int j =0; j < rows; j++) 
       {
-        board[i][j] = predPreyPicker();
+        //Preset
+        if (j < 49) board[i][j] = 1;
+        else if (i < 50) board[i][j] = 2;
+        
+        //Monte Carlo random //<>//
+        //board[i][j] = predPreyPicker();
       }
     }
   }
@@ -125,7 +130,7 @@ class Sim
     int rtn;
     float r = random(0, 1);
     if (r < 0.05) rtn = 1; //Blue prey5%
-    else if (r < 0.06) rtn = 2; //Red pred3%
+    else if (r < 0.06255) rtn = 2; //Rered3%
     else rtn = 0; //White empty 94%
     return rtn;
   }

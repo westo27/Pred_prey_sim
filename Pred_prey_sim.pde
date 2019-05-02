@@ -1,7 +1,7 @@
 import g4p_controls.*;
 
 // Tom Weston
-// ver 1.3
+// ver 4.0
 
 GWindow window;
 Sim sim;
@@ -16,7 +16,7 @@ void setup()
 
   window =  GWindow.getWindow(this, "My Window", 100, 50, 500, 500, JAVA2D);
   window.addDrawHandler(this, "windowDraw");
-  output = createWriter("ver_1_4_003.m"); 
+  output = createWriter("results/ver_4_results.m"); 
 }
 
 void draw() 
@@ -41,9 +41,11 @@ public void windowDraw(PApplet app, GWinData data)
 
   app.fill(127,0,0);
   app.rect(50, 500, 50, -sim.predCount/10);
+  app.text(sim.predCount,50,100);
   
   app.fill(102,102,255);
   app.rect(100, 500, 50, -sim.preyCount/10);
+  app.text(sim.preyCount,100,100);
 }
 
 void logResults() {

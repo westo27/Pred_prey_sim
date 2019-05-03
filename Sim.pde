@@ -30,7 +30,7 @@ class Sim
       for (int j =0; j < rows; j++) 
       {
         //Preset
-        if (j < board.length/2) board[i][j] = 1;
+        if (j%2 == 0) board[i][j] = 1;
         else board[i][j] = 2; //<>//
         
         //Monte Carlo random

@@ -29,12 +29,12 @@ class Sim
     {
       for (int j =0; j < rows; j++) 
       {
-        //Preset
-        if (j%2 == 0) board[i][j] = 1;
-        else board[i][j] = 2; //<>//
+        //50% Preset 
+        //if (j%2== 0) board[i][j] = 2;
+        //else board[i][j] = 1; //<>//
         
         //Monte Carlo random
-        //board[i][j] = predPreyPicker();
+        board[i][j] = predPreyPicker();
       }
     }
   }
@@ -129,8 +129,8 @@ class Sim
   {
     int rtn;
     float r = random(0, 1);
-    if (r < 0.05) rtn = 1; //Blue prey5%
-    else if (r < 0.06255) rtn = 2; //Rered3%
+    if (r < 0.50) rtn = 1; //Blue prey5%
+    else if (r < 1) rtn = 2; //Rered3%
     else rtn = 0; //White empty 94%
     return rtn;
   }

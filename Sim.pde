@@ -1,25 +1,33 @@
 class Sim 
 {
   // Window divider
-  int div =10;
+  int div=10;
   // Column and rows to store x and y coords for board[][]
   int columns, rows;
   // Predator and prey counts each cycle
   int preyCount, predCount;
   int generation;
+  
+  int gridFill = 0;
+  float catchRate = 0.33;
+  String distType = "";
+  
 
   // Board, this 2D array fills every position on the board
   int[][] board;
   ArrayList<Integer> predCountArr = new ArrayList<Integer>();
   ArrayList<Integer> preyCountArr = new ArrayList<Integer>();
 
-  Sim() 
+  Sim(int op2, float op3, String op4) 
   {
     // Initialize rows, columns and set-up arrays
     columns = width/div;
     rows = height/div;
     board = new int[columns][rows];
     generation = 0;
+    gridFill = op2;
+    catchRate = op3;
+    distType = op4;
     init();
   }
 
@@ -29,12 +37,19 @@ class Sim
     {
       for (int j =0; j < rows; j++) 
       {
-        //50% Preset 
-        //if (j%2== 0) board[i][j] = 2;
-        //else board[i][j] = 1; //<>//
-        
-        //Monte Carlo random
-        board[i][j] = predPreyPicker();
+        if (j <= gridFill) 
+          {
+            switch (distType)
+            {
+              case "d":
+                if (j%2== 0) board[i][j] = 2; //<>//
+                else board[i][j] = 1;
+                break;
+              case "s":
+                board[i][j] = predPreyPicker();
+                break;
+            }
+          }
       }
     }
   }
@@ -120,7 +135,7 @@ class Sim
   {
     int rtn;
     float r = random(0,1);
-    if (r < 0.66) rtn = 1;
+    if (r > catchRate) rtn = 1;
     else rtn = 2;
     return rtn;
   }

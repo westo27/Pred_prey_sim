@@ -1,3 +1,13 @@
+/**
+   * Sim Class
+   *
+   * Bugs: none known
+   *
+   * @author       Tom Weston
+   * @version      4.0
+   * @see also     Pred_prey_sim
+   */
+
 class Sim 
 {
   // Window divider
@@ -13,11 +23,17 @@ class Sim
   String distType = "";
   
 
-  // Board, this 2D array fills every position on the board
+  //Board, this 2D array fills every position on the board
   int[][] board;
   ArrayList<Integer> predCountArr = new ArrayList<Integer>();
   ArrayList<Integer> preyCountArr = new ArrayList<Integer>();
-
+  
+  /**
+  * Constructor: Requires a specified Suit and CardValue.
+  * @param op2 The value of user input 2, % of board
+  * @param op3 The value of user input 3, catch rate
+  * @param op4 The value of user input 4, stochastic/deterministic
+  */
   Sim(int op2, float op3, String op4) 
   {
     // Initialize rows, columns and set-up arrays
@@ -31,6 +47,9 @@ class Sim
     init();
   }
 
+  /** METHOD
+  * Set up the board
+  */
   void init() {
     //Loop through board array and call predPreyPicker() on each entity
     for (int i =0; i < columns; i++) 
@@ -54,7 +73,9 @@ class Sim
     }
   }
 
-  //Creates the new generation, called each cycle by the draw() function
+  /** METHOD
+  * Creates the new generation, called each cycle by the draw() method
+  */
   void generate() 
   {    
     //Reset prey and pred count from last cycle
@@ -115,7 +136,9 @@ class Sim
     generation++;
   }
 
-  //Display the cells, called by draw() on each cycle
+  /** METHOD
+  * Display the cells, called by draw() on each cycle
+  */
   void display() 
   {
     for ( int i = 0; i < columns; i++) 
@@ -131,6 +154,11 @@ class Sim
     }
   }
   
+  /** METHOD
+  * Decides if a predator successfully catches prey
+  *
+  * @return prey if hunt failed, predator if hunt succeeded
+  */
   int eatEscapePicker() 
   {
     int rtn;
@@ -140,6 +168,11 @@ class Sim
     return rtn;
   }
   
+  /** METHOD
+  * Decides if a new cell is going to be predator, prey or blank
+  *
+  * @return prey, predator or blank
+  */  
   int predPreyPicker()
   {
     int rtn;
@@ -150,6 +183,9 @@ class Sim
     return rtn;
   }
 
+  /** METHOD
+  * Keeps track of the number of generation cycles that have passed
+  */ 
   void counter()
   {
     for (int x = 1; x < columns-1; x++) 

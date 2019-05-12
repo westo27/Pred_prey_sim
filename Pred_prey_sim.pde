@@ -38,7 +38,7 @@
     sim = new Sim(op2, op3, op4);
   
     //Init second window
-    window =  GWindow.getWindow(this, "My Window", 100, 50, 500, 500, JAVA2D);
+    window =  GWindow.getWindow(this, "My Window", 100, 50, 200, 500, JAVA2D);
     window.addDrawHandler(this, "windowDraw");
     output = createWriter("results/ver_4_results.m"); 
   }
